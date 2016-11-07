@@ -55,7 +55,20 @@ class DetailViewController: UIViewController {
             profileImageView.layer.cornerRadius = 10.0
             profileImageView.clipsToBounds = true
 
+            var tapped:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onImageTap")
+            tapped.numberOfTapsRequired = 1
+            profileImageView?.addGestureRecognizer(tapped)
+            profileImageView.isUserInteractionEnabled = true
+
         }
+    }
+
+    func onImageTap() {
+        var vc = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        vc.userID = tweet?.userID
+        vc.screenName = tweet?.screenName
+        vc.tweet = tweet
+        self.present(vc, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +89,6 @@ class DetailViewController: UIViewController {
         }
     }
 
-
     @IBAction func onRetweetButton(_ sender: AnyObject) {
         if tweet?.retweeted == false {
             TwitterClient.sharedInstance?.retweetTweet(tweetID: (tweet?.tweetID)!)
@@ -84,6 +96,8 @@ class DetailViewController: UIViewController {
             retweetButton.tintColor = Constants.greenColor
         }
     }
+
+
 
     /*
     // MARK: - Navigation

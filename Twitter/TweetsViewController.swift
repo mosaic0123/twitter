@@ -97,9 +97,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.retweetButton.tintColor = tweet.favorited ? Constants.greenColor : Constants.blueColor
         }
 
-
         return cell
     }
+
     @IBAction func onLogOut(_ sender: AnyObject) {
         TwitterClient.sharedInstance?.logout()
     }

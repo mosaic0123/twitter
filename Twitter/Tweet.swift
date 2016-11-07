@@ -13,12 +13,18 @@ class Tweet: NSObject {
     var text: String?
     var userName: String?
     var userImageURL: String?
+    var bannerImageURL: String = "https://pbs.twimg.com/profile_banners/2243116610/1407712105"
+    var userID: String?
+    var userFollowersCount : Int = 0
+    var userFollowing : Int = 0
+    var statusCount : Int = 0
     var timestamp: Date?
     var retweetCount: Int = 0
     var favoriteCount: Int = 0
     var favorited: Bool = false
     var retweeted: Bool = false
     var tweetID: String?
+    var screenName: String?
 
     init(dictionary: NSDictionary) {
         text = dictionary["text"] as? String
@@ -26,6 +32,12 @@ class Tweet: NSObject {
         if let userDict = dictionary["user"] as? NSDictionary {
             userName = userDict["name"] as? String
             userImageURL = userDict["profile_image_url"] as? String
+            bannerImageURL = (userDict["profile_banner_url"] as? String)!
+            userID = userDict["id_str"] as? String
+            screenName = userDict["screen_name"] as? String
+            userFollowersCount = (userDict["followers_count"] as? Int) ?? 0
+            userFollowing = (userDict["following"] as? Int) ?? 0
+            statusCount = (userDict["statuses_count"] as? Int) ?? 0
         }
 
         tweetID = dictionary["id_str"] as? String

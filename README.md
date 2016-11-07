@@ -18,11 +18,11 @@ The following **required** functionality is completed:
 - [ ] Hamburger menu
    - [ ] Dragging anywhere in the view should reveal the menu.
    - [ ] The menu should include links to your profile, the home timeline, and the mentions view.
-- [ ] Profile page
-   - [ ] Contains the user header view (implemented as a custom view)
-   - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline
-   - [ ] Tapping on a user image should bring up that user's profile page
+- [x] Profile page
+   - [x] Contains the user header view (implemented as a custom view)
+   - [x] Contains a section with the users basic stats: # tweets, # following, # followers
+- [x] Home Timeline
+   - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
@@ -47,10 +47,14 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/b1lpLDe.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+- Question:
+
+1) When a segue has been created for a tableview cell and I want to add a gesture recognizer to the imageview which is in the cell. I cannot find a way to pass the indexpath of the imageivew.

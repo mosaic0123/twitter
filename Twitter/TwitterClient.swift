@@ -40,6 +40,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
 
+    func findUser(userID: String, screenName: String)  {
+        TwitterClient.sharedInstance?.post("1.1/users/show.json", parameters: ["id" : userID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) -> Void in
+                print(response)
+                print("🍞request succeed!")
+            }, failure: {
+                (task: URLSessionDataTask?, error: Error) -> Void in
+                print(error.localizedDescription)
+        })
+
+    }
+
     func retweetTweet(tweetID: String) {
         TwitterClient.sharedInstance?.post("1.1/statuses/retweet/\(tweetID).json", parameters: ["id" : tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) -> Void in
             }, failure: {
