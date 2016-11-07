@@ -24,12 +24,17 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func onLoginButton(_ sender: AnyObject) {
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com"), consumerKey: "IYtXw8B7Z0Ftmnxnq3VsTRRLT", consumerSecret: "qXF0jYU2o7qD4x8NEwH9jN5XNaUwbnQqk6z9UUNWwICggMI9LV")
+        let twitterClient = TwitterClient.sharedInstance?.login(success: { () -> () in
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
 
-        twitterClient?.deauthorize()
+        }) { (error: Error) -> () in
+            print("Error:\(error.localizedDescription)")
+        }
 
-        twitterClient?.fetchRequestToken(withPath: "https://api.twitter.com/oauth/request_token", method: "GET", callbackURL: nil, scope: nil, success: ({(requestToken: BDBOAuth1Credential?) -> Void in print("I got a token")}), failure: ({(error:Error?) -> Void in print("error: \(error?.localizedDescription)")}))
-    }       /*
+       
+    }
+
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
